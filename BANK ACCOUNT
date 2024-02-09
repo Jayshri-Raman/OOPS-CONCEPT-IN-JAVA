@@ -1,0 +1,51 @@
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+class Account{
+    int acct;
+    String name;
+    float amount;
+    void insert(int a,String n,float amt){
+        acct=a;
+        name=n;
+        amount=amt;
+    }
+    //deposit adding money
+    void deposit(float amt)
+    {
+        amount=amount+amt;
+        System.out.print(amt+"successfully done");
+    }
+    //withdrawl taking money
+    
+    void withdraw(float amt)
+    {
+        if(amount<amt)
+        {
+            System.out.print("No balance");
+        }
+        else{
+            amount=amount-amt;
+            System.out.print(amount+"your balance");
+        }
+    }
+    void checkBalance()
+    {
+        System.out.print(amount);
+    }
+    void displaydata()
+    {
+        System.out.print(acct+" "+name+" "+amount);
+    }
+}
+
+class TestAccount{
+    public static void main(String[] args)
+    {
+        Account a=new Account();
+        a.insert(101,"jai",50000);
+        a.deposit(2500);
+        a.withdraw(250);
+        a.checkBalance();
+        a.displaydata();
+    }
+}
