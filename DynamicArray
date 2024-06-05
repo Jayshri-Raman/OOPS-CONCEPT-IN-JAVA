@@ -1,0 +1,183 @@
+import java.util.*;
+
+
+class DyanamicArray{
+    private static final int cap=16;
+    private int arr[];
+    public int size;
+    private int capacity;
+    
+    DyanamicArray(){
+        size=0;
+        arr=new int[cap];
+        capacity=cap;
+    }
+    
+    public void add(int val){
+        if(size==capacity)
+        {
+            expandArr();
+        }
+        arr[size]=val;
+        size++;
+    }
+    private void expandArr(){
+        capacity*=2;
+        arr=java.util.Arrays.copyOf(arr,capacity);
+    }
+    public void display()
+    {
+        for(int i=0;i<=size;i++)
+        {
+            System.out.print(arr[i]+" ");
+        }
+    }
+    public void insertPos(int pos,int val)
+    {
+        for(int i=size-1;i>=pos;i--)
+        {
+            arr[i+1]=arr[i];
+        }
+        arr[pos]=val;
+        size++;
+    }
+    public void deletePos(int pos)
+    {
+        for(int i=pos+1;i<size;i++)
+        {
+            arr[i-1]=arr[i];
+        }
+        
+        size--;
+    }
+     public void deleteEnd()
+    {
+        deletePos(arr[size--]);
+    }
+      public void deleteBeg()
+    {
+        deletePos(arr[0]);
+        size--;
+    }
+    
+    
+    public void insertBeg(int val)
+    {
+        arr[0]=val;
+        System.out.print(arr[0]);
+        size++;
+    }
+    public void getindex(int index)
+    {
+        System.out.print(arr[index]);
+    }
+    public void update(int pos ,int val)
+    {
+        arr[pos]=val;
+        System.out.print(arr[pos]);
+    }
+    public void search(int val)
+    {
+        for(int i=0;i<size;i++)
+        {
+            if(arr[i]==val)
+            {
+                System.out.print("yes");
+            }
+        }
+    }
+    
+    
+    
+}
+
+public class Main
+{
+	public static void main(String[] args) {
+	    Scanner sc=new Scanner(System.in);
+	    
+	    int val,pos;
+	    DyanamicArray list=new DyanamicArray();
+	    while(true)
+	    {
+	       
+	        System.out.println("1.Insert at End\n");
+	        System.out.println("2.Display the list\n");
+	        System.out.println("3.Insert at specified position \n");
+	        System.out.println("4.Delete from specified position\n");
+	       
+	         System.out.println("5.Delete at end\n");
+	          System.out.println("6.Delete at beg\n");
+	           System.out.println("7.insert at beg\n");
+	            System.out.println("8.get index\n");
+	             System.out.println("9.update\n");
+	              System.out.println("10.search\n");
+	               System.out.println("11.Exit\n");
+	           
+	        
+	        System.out.println("\n--------------------------------------\n");
+	        System.out.println("Enter your choice:\t");
+	        int choice = sc.nextInt();
+	        switch(choice){
+	           case 1:
+	                val=sc.nextInt();
+	                list.add(val);
+	                break;
+	           case 2:
+	                
+	                list.display();
+	                break;
+	           case 3:
+	                pos=sc.nextInt();
+	                val=sc.nextInt();
+	                list.insertPos(pos,val);
+	                break;
+	           case 4:
+	                pos=sc.nextInt();
+	                
+	                list.deletePos(pos);
+	                break;
+	            
+	            case 5:
+	                
+	               list.deleteEnd();
+	                break;
+	               
+	                case 6:
+	               list.deleteBeg();
+	                break;
+	                case 7:
+	                    val=sc.nextInt();
+	               list.insertBeg(val);
+	                break;
+	                
+	                case 8:
+	                    int index=sc.nextInt();
+	               list.getindex(index);
+	                break;
+	                
+	                case 9:
+	                    pos=sc.nextInt();
+	                val=sc.nextInt();
+	               list.update(pos,val);
+	                break;
+	                 case 10:
+	                    
+	                val=sc.nextInt();
+	               list.search(val);
+	                break;
+	                
+	           
+	           case 11:
+	                
+	                System.exit(0);
+	           default:
+	           System.out.print("Invalid");
+	           
+	    }
+	    
+	    
+	
+	}
+	}
+}
